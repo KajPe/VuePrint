@@ -3,13 +3,16 @@ Print plugin (component) for Vue
   
   
 ## How it works
-- IFrame support only (no popup)
-- The printout (what gets inside the iframe) is either built in code or can be downloaded with axios
+- IFrame support only (no popup).
+- The printout (what gets inside the iframe) is controlled by a callback function which returns a string or a promise.
 - If multiple vue-print components are placed then each component has an own iframe. This is by design.  
   The iframe is however emptied after a print, so should not cause much problems.
-- State is communicated back to parent via events
+- State is communicated back to parent via events.
 - The component is listening on then click event, the visual part can be a button, image, icon, ...
-- Tested with Chrome 87 & FireFox 84
+- Tested with Chrome 87 & FireFox 84.
+
+## Known problems
+- If the printout contains images or code which are downloaded, it wont give an error if those fails for some reason.
 
 ## Usage
 In your parent component import the plugin in the **script** section.
@@ -32,7 +35,7 @@ You can now add **vue-print** to your template. Clicking the **print** text will
   <vue-print :callback="printcallback">Print</vue-print>
 ```
 
-You can simply configure anything you want to visualize the vue-print.  
+You can configure anything you want to visualize the vue-print.  
 For example here is Vuetify's components v-btn and v-icon used.
 ```javascript
   <vue-print :callback="printcallback">
